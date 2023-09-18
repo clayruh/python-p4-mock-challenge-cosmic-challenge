@@ -87,7 +87,7 @@ def delete_scientist(id):
         db.session.commit()
         return {}, 204
     except:
-        return jsonify({"error": "That scientist doesn't exist bc you deleted him..."}), 404
+        return jsonify({"error": "Scientist not found"}), 404
 
 @app.post('/missions')
 def create_mission():

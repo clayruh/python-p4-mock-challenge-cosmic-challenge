@@ -28,7 +28,7 @@ class Planet(db.Model, SerializerMixin):
     missions = db.relationship("Mission", back_populates="planet")
     scientists = association_proxy('missions', 'scientist')
 
-    serialize_rules = ('-missions.planet',)
+    serialize_rules = ('-missions.planet', '-missions.planet_id', '-missions.scientist_id')
 
 class Scientist(db.Model, SerializerMixin):
     __tablename__ = 'scientists'
@@ -39,7 +39,7 @@ class Scientist(db.Model, SerializerMixin):
 
     missions = db.relationship("Mission", back_populates="scientist")
     planets = association_proxy('missions', 'planet')
-    serialize_rules = ('-missions.scientist',)
+    serialize_rules = ('-missions.scientist', '-missions.planet_id', '-missions.scientist_id')
 
 class Mission(db.Model, SerializerMixin):
     __tablename__ = 'missions'
